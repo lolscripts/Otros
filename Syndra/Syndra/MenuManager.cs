@@ -15,95 +15,95 @@ namespace Syndra
         {
             var addonName = Champion.AddonName;
             var author = Champion.Author;
-            AddonMenu = MainMenu.AddMenu(addonName, addonName + " by " + author + " v1.2 ");
-            AddonMenu.AddLabel(addonName + " made by " + author);
+            AddonMenu = MainMenu.AddMenu(addonName, addonName + " por " + author + " v1.2 ");
+            AddonMenu.AddLabel(addonName + " echo por " + author);
 
-            SubMenu["Prediction"] = AddonMenu.AddSubMenu("Prediction", "Prediction 2.1");
-            SubMenu["Prediction"].AddGroupLabel("Q Settings");
-            SubMenu["Prediction"].Add("QCombo", new Slider("Combo HitChancePercent", 65, 0, 100));
-            SubMenu["Prediction"].Add("QHarass", new Slider("Harass HitChancePercent", 70, 0, 100));
-            SubMenu["Prediction"].AddGroupLabel("W Settings");
-            SubMenu["Prediction"].Add("WCombo", new Slider("Combo HitChancePercent", 65, 0, 100));
-            SubMenu["Prediction"].Add("WHarass", new Slider("Harass HitChancePercent", 65, 0, 100));
-            SubMenu["Prediction"].AddGroupLabel("QE Settings");
-            SubMenu["Prediction"].Add("ECombo", new Slider("Combo HitChancePercent", 65, 0, 100));
-            SubMenu["Prediction"].Add("EHarass", new Slider("Harass HitChancePercent", 70, 0, 100));
+            SubMenu["Prediccion"] = AddonMenu.AddSubMenu("Prediccion", "Prediccion 2.1");
+            SubMenu["Prediccion"].AddGroupLabel("Q Configuracion");
+            SubMenu["Prediccion"].Add("QCombo", new Slider("Combo HitChancePorcentaje", 65, 0, 100));
+            SubMenu["Prediccion"].Add("Tirar", new Slider("Harass HitChancePorcentaje", 70, 0, 100));
+            SubMenu["Prediccion"].AddGroupLabel("W Configuracion");
+            SubMenu["Prediccion"].Add("WCombo", new Slider("Combo HitChancePorcentaje", 65, 0, 100));
+            SubMenu["Prediccion"].Add("WTirar", new Slider("Harass HitChancePorcentaje", 65, 0, 100));
+            SubMenu["Prediccion"].AddGroupLabel("QE Configuracion");
+            SubMenu["Prediccion"].Add("ECombo", new Slider("Combo HitChancePorcentaje", 65, 0, 100));
+            SubMenu["Prediccion"].Add("ETirar", new Slider("Tirar HitChancePorcentaje", 70, 0, 100));
 
 
             SubMenu["Combo"] = AddonMenu.AddSubMenu("Combo", "Combo 2");
-            SubMenu["Combo"].Add("Q", new CheckBox("Use Q", true));
-            SubMenu["Combo"].Add("W", new CheckBox("Use W", true));
-            SubMenu["Combo"].Add("E", new CheckBox("Use E", true));
-            SubMenu["Combo"].Add("QE", new CheckBox("Use QE", true));
-            SubMenu["Combo"].Add("WE", new CheckBox("Use WE", true));
-            SubMenu["Combo"].AddStringList("R", "Use R", new[] { "Never", "If killable", "If needed", "Always" }, 1);
-            SubMenu["Combo"].Add("Zhonyas", new Slider("Use Zhonyas if HealthPercent <=", 10, 0, 100));
-            SubMenu["Combo"].Add("Cooldown", new Slider("Cooldown on spells for R needed", 4, 0, 10));
+            SubMenu["Combo"].Add("Q", new CheckBox("Usar Q", true));
+            SubMenu["Combo"].Add("W", new CheckBox("Usar W", true));
+            SubMenu["Combo"].Add("E", new CheckBox("Usar E", true));
+            SubMenu["Combo"].Add("QE", new CheckBox("Usar QE", true));
+            SubMenu["Combo"].Add("WE", new CheckBox("Usar WE", true));
+            SubMenu["Combo"].AddStringList("R", "Usar R", new[] { "Nunca", "Si killable", "Si es necesario", "Siempre" }, 1);
+            SubMenu["Combo"].Add("Zhonyas", new Slider("Usar Zhonya Porcentaje de Vida <=", 10, 0, 100));
+            SubMenu["Combo"].Add("Cooldown", new Slider("Tiempo de reutilización de los hechizos R", 4, 0, 10));
 
-            SubMenu["Harass"] = AddonMenu.AddSubMenu("Harass", "Harass");
-            SubMenu["Harass"].Add("Toggle", new KeyBind("Harass toggle", false, KeyBind.BindTypes.PressToggle, 'K'));
-            SubMenu["Harass"].Add("Q", new CheckBox("Use Q", true));
-            SubMenu["Harass"].Add("W", new CheckBox("Use W", false));
-            SubMenu["Harass"].Add("E", new CheckBox("Use E", false));
-            SubMenu["Harass"].Add("QE", new CheckBox("Use QE", false));
-            SubMenu["Harass"].Add("WE", new CheckBox("Use WE", false));
-            SubMenu["Harass"].Add("Turret", new CheckBox("Don't harass under enemy turret", true));
-            SubMenu["Harass"].Add("Mana", new Slider("Min. Mana Percent:", 20, 0, 100));
+            SubMenu["Tirar"] = AddonMenu.AddSubMenu("Tirar", "Tirar");
+            SubMenu["Tirar"].Add("Toggle", new KeyBind("Tirar", false, KeyBind.BindTypes.PressToggle, 'K'));
+            SubMenu["Tirar"].Add("Q", new CheckBox("Usar Q", true));
+            SubMenu["Tirar"].Add("W", new CheckBox("Usar W", false));
+            SubMenu["Tirar"].Add("E", new CheckBox("Usar E", false));
+            SubMenu["Tirar"].Add("QE", new CheckBox("Usar QE", false));
+            SubMenu["Tirar"].Add("WE", new CheckBox("Usar WE", false));
+            SubMenu["Tirar"].Add("Turret", new CheckBox("No atacar bajo torreta enemiga", true));
+            SubMenu["Tirar"].Add("Mana", new Slider("Min. Mana Porcentaje:", 20, 0, 100));
 
-            SubMenu["LaneClear"] = AddonMenu.AddSubMenu("LaneClear", "LaneClear");
-            SubMenu["LaneClear"].Add("Q", new Slider("Use Q if Hit >=", 3, 0, 10));
-            SubMenu["LaneClear"].Add("W", new Slider("Use W if Hit >=", 3, 0, 10));
-            SubMenu["LaneClear"].AddGroupLabel("Unkillable minions");
-            SubMenu["LaneClear"].Add("Q2", new CheckBox("Use Q", true));
-            SubMenu["LaneClear"].Add("Mana", new Slider("Min. Mana Percent:", 50, 0, 100));
+            SubMenu["LimpiarLinea"] = AddonMenu.AddSubMenu("LimpiarLinea", "LimpiarLinea");
+            SubMenu["LimpiarLinea"].Add("Q", new Slider("Usar Q si Hit >=", 3, 0, 10));
+            SubMenu["LimpiarLinea"].Add("W", new Slider("Usar W if Hit >=", 3, 0, 10));
+            SubMenu["LimpiarLinea"].AddGroupLabel("Unkillable minions");
+            SubMenu["LimpiarLinea"].Add("Q2", new CheckBox("Usar Q", true));
+            SubMenu["LimpiarLinea"].Add("Mana", new Slider("Min. Mana Porcentaje:", 50, 0, 100));
             
-            SubMenu["JungleClear"] = AddonMenu.AddSubMenu("JungleClear", "JungleClear");
-            SubMenu["JungleClear"].Add("Q", new CheckBox("Use Q", true));
-            SubMenu["JungleClear"].Add("W", new CheckBox("Use W", true));
-            SubMenu["JungleClear"].Add("E", new CheckBox("Use E", true));
-            SubMenu["JungleClear"].Add("Mana", new Slider("Min. Mana Percent:", 20, 0, 100));
+            SubMenu["LimpiarJungla"] = AddonMenu.AddSubMenu("LimpiarJungla", "LimpiarJungla");
+            SubMenu["LimpiarJungla"].Add("Q", new CheckBox("Usar Q", true));
+            SubMenu["LimpiarJungla"].Add("W", new CheckBox("Usar W", true));
+            SubMenu["LimpiarJungla"].Add("E", new CheckBox("Usar E", true));
+            SubMenu["LimpiarJungla"].Add("Mana", new Slider("Min. Mana Porcentaje:", 20, 0, 100));
 
-            SubMenu["LastHit"] = AddonMenu.AddSubMenu("LastHit", "LastHit");
-            SubMenu["LastHit"].AddGroupLabel("Unkillable minions");
-            SubMenu["LastHit"].Add("Q", new CheckBox("Use Q", true));
-            SubMenu["LastHit"].Add("Mana", new Slider("Min. Mana Percent:", 50, 0, 100));
+            SubMenu["UltimoGolpe"] = AddonMenu.AddSubMenu("UltimoGolpe", "UltimoGolpe");
+            SubMenu["UltimoGolpe"].AddGroupLabel("Unkillable minions");
+            SubMenu["UltimoGolpe"].Add("Q", new CheckBox("Usar Q", true));
+            SubMenu["UltimoGolpe"].Add("Mana", new Slider("Min. Mana Porcentaje:", 50, 0, 100));
             
             SubMenu["KillSteal"] = AddonMenu.AddSubMenu("KillSteal", "KillSteal");
-            SubMenu["KillSteal"].Add("Q", new CheckBox("Use Q", true));
-            SubMenu["KillSteal"].Add("W", new CheckBox("Use W", true));
-            SubMenu["KillSteal"].Add("E", new CheckBox("Use E", true));
-            SubMenu["KillSteal"].Add("R", new CheckBox("Use R", false));
-            SubMenu["KillSteal"].Add("Ignite", new CheckBox("Use Ignite", true));
+            SubMenu["KillSteal"].Add("Q", new CheckBox("Usar Q", true));
+            SubMenu["KillSteal"].Add("W", new CheckBox("Usar W", true));
+            SubMenu["KillSteal"].Add("E", new CheckBox("Usar E", true));
+            SubMenu["KillSteal"].Add("R", new CheckBox("Usar R", false));
+            SubMenu["KillSteal"].Add("Ignite", new CheckBox("Usar Ignite", true));
 
-            SubMenu["Flee"] = AddonMenu.AddSubMenu("Flee", "Flee");
-            SubMenu["Flee"].Add("Movement", new CheckBox("Disable movement", true));
-            SubMenu["Flee"].Add("E", new CheckBox("Use QE/WE on enemy near mouse", true));
+            SubMenu["Escapar"] = AddonMenu.AddSubMenu("Escapar", "Escapar");
+            SubMenu["Escapar"].Add("Movimiento", new CheckBox("Desactivar Movimiento", true));
+            SubMenu["Escapar"].Add("E", new CheckBox("Usar QE/WE el enemigo cerca de ratón", true));
 
-            SubMenu["Drawings"] = AddonMenu.AddSubMenu("Drawings", "Drawings");
-            SubMenu["Drawings"].Add("Disable", new CheckBox("Disable all drawings", false));
-            SubMenu["Drawings"].AddSeparator();
-            SubMenu["Drawings"].Add("Q", new CheckBox("Draw Q Range", true));
-            SubMenu["Drawings"].Add("W", new CheckBox("Draw W Range", false));
-            SubMenu["Drawings"].Add("QE", new CheckBox("Draw QE Range", true));
-            SubMenu["Drawings"].Add("R", new CheckBox("Draw R Range", false));
-            SubMenu["Drawings"].Add("DamageIndicator", new CheckBox("Draw Damage Indicator", true));
-            SubMenu["Drawings"].Add("Target", new CheckBox("Draw circle on target", true));
-            SubMenu["Drawings"].Add("Killable", new CheckBox("Draw text if enemy is killable", true));
-            SubMenu["Drawings"].Add("W.Object", new CheckBox("Draw circle on w object", true));
-            SubMenu["Drawings"].Add("Harass.Toggle", new CheckBox("Draw text for harass toggle status", true));
-            SubMenu["Drawings"].AddStringList("E.Lines", "Draw lines for E", new[] { "Never", "If will hit enemy", "Always" }, 1);
+            SubMenu["Circulos"] = AddonMenu.AddSubMenu("Circulos", "Circulos");
+            SubMenu["Circulos"].Add("Disable", new CheckBox("Desactivar los circulos", false));
+            SubMenu["Circulos"].AddSeparator();
+            SubMenu["Circulos"].Add("Q", new CheckBox("Draw Q Rango", true));
+            SubMenu["Circulos"].Add("W", new CheckBox("Draw W Rango", false));
+            SubMenu["Circulos"].Add("QE", new CheckBox("Draw QE Rango", true));
+            SubMenu["Circulos"].Add("R", new CheckBox("Draw R Rango", false));
+            SubMenu["Circulos"].Add("DamageIndicator", new CheckBox("Draw indicador de daño", true));
+            SubMenu["Circulos"].Add("Target", new CheckBox("Draw Circulo en tarjet", true));
+            SubMenu["Circulos"].Add("Killable", new CheckBox("Draw texto si enemigo es killable", true));
+            SubMenu["Circulos"].Add("W.Object", new CheckBox("Draw círculo en w objeto", true));
+            SubMenu["Circulos"].Add("Harass.Toggle", new CheckBox("Draw texto para el estado de conmutación tirar", true));
+            SubMenu["Circulos"].AddStringList("E.Lines", "Draw lineas de E", new[] { "Nunca", "Si llegará enemigo", "Siempre" }, 1);
 
-            SubMenu["Misc"] = AddonMenu.AddSubMenu("Misc", "Misc");
-            SubMenu["Misc"].Add("GapCloser", new CheckBox("Use QE/WE to Interrupt GapClosers", true));
-            SubMenu["Misc"].Add("Interrupter", new CheckBox("Use QE/WE to Interrupt Channeling Spells", true));
-            SubMenu["Misc"].Add("QE.Range", new Slider("Less QE Range", 0, 0, 650));
-            SubMenu["Misc"].Add("Overkill", new Slider("Overkill % for damage prediction", 10, 0, 100));
+            SubMenu["Otros"] = AddonMenu.AddSubMenu("Otros", "Otros");
+            SubMenu["Otros"].Add("GapCloser", new CheckBox("Usar QE/WE para interrumpir", true));
+            SubMenu["Otros"].Add("Interrupter", new CheckBox("Usar QE/WE a Interrumpirhechizos", true));
+            SubMenu["Otros"].Add("QE.Range", new Slider("Menos QE Rango", 0, 0, 650));
+            SubMenu["Otros"].Add("Overkill", new Slider("Overkill % de prediccion de daño", 10, 0, 100));
             if (EntityManager.Heroes.Enemies.Count > 0)
             {
-                SubMenu["Misc"].AddGroupLabel("Don't use R on");
+                SubMenu["Otros"].AddGroupLabel("No usar R en");
                 foreach (var enemy in EntityManager.Heroes.Enemies)
                 {
-                    SubMenu["Misc"].Add("Dont.R." + enemy.ChampionName, new CheckBox(enemy.ChampionName, false));
+                    SubMenu["Otros"].Add("Dont.R." + enemy.ChampionName, new CheckBox(enemy.ChampionName, false));
                 }
             }
 
@@ -141,17 +141,17 @@ namespace Syndra
 
         public static Menu MiscMenu
         {
-            get { return GetSubMenu("Misc"); }
+            get { return GetSubMenu("Otros"); }
         }
 
         public static Menu PredictionMenu
         {
-            get { return GetSubMenu("Prediction"); }
+            get { return GetSubMenu("Prediccion"); }
         }
 
         public static Menu DrawingsMenu
         {
-            get { return GetSubMenu("Drawings"); }
+            get { return GetSubMenu("Circulos"); }
         }
     }
 }
