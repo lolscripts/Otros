@@ -14,8 +14,8 @@ namespace Project_Zed
 {
     static class Program
     {
-        private static readonly string Author = "iCreative";
-        private static readonly string AddonName = "Project Zed";
+        private static readonly string Author = "LolScript.net";
+        private static readonly string AddonName = "Project Zed - LolScript";
         private static readonly float RefreshTime = 0.4f;
         private static readonly Dictionary<int, DamageInfo> PredictedDamage = new Dictionary<int, DamageInfo>();
         private static Menu menu;
@@ -274,84 +274,84 @@ namespace Project_Zed
             menu = MainMenu.AddMenu(AddonName, AddonName + " by " + Author + "v1.10");
             menu.AddLabel(AddonName + " made by " + Author);
 
-            SubMenu["Prediction"] = menu.AddSubMenu("Prediction", "Prediction");
-            SubMenu["Prediction"].AddGroupLabel("Q Settings");
-            SubMenu["Prediction"].Add("QCombo", new Slider("Combo HitChancePercent", 70, 0, 100));
-            SubMenu["Prediction"].Add("QHarass", new Slider("Harass HitChancePercent", 75, 0, 100));
+            SubMenu["Prediction"] = menu.AddSubMenu("Prediccion", "Prediccion");
+            SubMenu["Prediction"].AddGroupLabel("Q Configuracion");
+            SubMenu["Prediction"].Add("QCombo", new Slider("Combo Probabilidad", 70, 0, 100));
+            SubMenu["Prediction"].Add("QHarass", new Slider("Tirar Probabilidad", 75, 0, 100));
 
             SubMenu["Combo"] = menu.AddSubMenu("Combo", "Combo");
-            Orbwalker.RegisterKeyBind(SubMenu["Combo"].Add("Combo2", new KeyBind("Combo without R", false, KeyBind.BindTypes.HoldActive, 'A')), Orbwalker.ActiveModes.Combo);
-            SubMenu["Combo"].AddStringList("Mode", "R Mode", new[] { "Line", "Triangle", "MousePos" }, 0);
-            SubMenu["Combo"].Add("Q", new CheckBox("Use Q", true));
-            SubMenu["Combo"].Add("W", new CheckBox("Use W", true));
-            SubMenu["Combo"].Add("E", new CheckBox("Use E", true));
-            SubMenu["Combo"].Add("R", new CheckBox("Use R", true));
-            SubMenu["Combo"].Add("Items", new CheckBox("Use Items", true));
-            SubMenu["Combo"].Add("SwapDead", new CheckBox("Use W2/R2 if target will die", true));
-            SubMenu["Combo"].Add("SwapHP", new Slider("Use W2/R2 if my HealthPercent is less than", 10, 0, 100));
-            SubMenu["Combo"].Add("SwapGapclose", new CheckBox("Use W2/R2 to get close to target", true));
+            Orbwalker.RegisterKeyBind(SubMenu["Combo"].Add("Combo2", new KeyBind("Combo sin unsar R", false, KeyBind.BindTypes.HoldActive, 'A')), Orbwalker.ActiveModes.Combo);
+            SubMenu["Combo"].AddStringList("Modo", "R Modo", new[] { "Linea", "Triangulo", "PosiciondelMouse" }, 0);
+            SubMenu["Combo"].Add("Q", new CheckBox("Usar Q", true));
+            SubMenu["Combo"].Add("W", new CheckBox("Usar W", true));
+            SubMenu["Combo"].Add("E", new CheckBox("Usar E", true));
+            SubMenu["Combo"].Add("R", new CheckBox("Usar R", true));
+            SubMenu["Combo"].Add("Items", new CheckBox("Usar Items", true));
+            SubMenu["Combo"].Add("SwapDead", new CheckBox("Usar W2/R2 si el objetivo va a morir", true));
+            SubMenu["Combo"].Add("SwapHP", new Slider("Usar W2/R2 si mi Porcentaje de Salud está a menos de", 10, 0, 100));
+            SubMenu["Combo"].Add("SwapGapclose", new CheckBox("Usar W2/R2 para llegar cerca de la meta", true));
             SubMenu["Combo"].Add("Prevent",
-                new KeyBind("Don't use spells before R", true, KeyBind.BindTypes.PressToggle, 'L'));
-            SubMenu["Combo"].AddGroupLabel("Don't use R on");
+                new KeyBind("No utilizar hechizos antes de R", true, KeyBind.BindTypes.PressToggle, 'L'));
+            SubMenu["Combo"].AddGroupLabel("No usar R en");
             foreach (var enemy in EntityManager.Heroes.Enemies)
             {
                 SubMenu["Combo"].Add(enemy.ChampionName, new CheckBox(enemy.ChampionName, false));
             }
 
-            SubMenu["Harass"] = menu.AddSubMenu("Harass", "Harass");
-            Orbwalker.RegisterKeyBind(SubMenu["Harass"].Add("Harass2", new KeyBind("Harass 2 Key", false, KeyBind.BindTypes.HoldActive, 'S')), Orbwalker.ActiveModes.Harass);
-            SubMenu["Harass"].Add("Collision", new CheckBox("Check collision with Q", false));
-            SubMenu["Harass"].Add("SwapGapclose", new CheckBox("Use W2 if target is killable", true));
-            SubMenu["Harass"].AddGroupLabel("Harass 1");
-            SubMenu["Harass"].Add("Q", new CheckBox("Use Q on Harass 1", true));
-            SubMenu["Harass"].Add("W", new CheckBox("Use W on Harass 1", false));
-            SubMenu["Harass"].Add("E", new CheckBox("Use E on Harass 1", true));
+            SubMenu["Harass"] = menu.AddSubMenu("Tirar", "Tirar");
+            Orbwalker.RegisterKeyBind(SubMenu["Tirar"].Add("Harass2", new KeyBind("Tirar 2 Key", false, KeyBind.BindTypes.HoldActive, 'S')), Orbwalker.ActiveModes.Harass);
+            SubMenu["Harass"].Add("Colision", new CheckBox("Compruebe colisión con Q", false));
+            SubMenu["Harass"].Add("IntercambiarSombra", new CheckBox("Usar W2 si el objetivo es matable", true));
+            SubMenu["Harass"].AddGroupLabel("Tirar 1");
+            SubMenu["Harass"].Add("Q", new CheckBox("Usar Q en Tirar 1", true));
+            SubMenu["Harass"].Add("W", new CheckBox("Usar W en Tirar 1", false));
+            SubMenu["Harass"].Add("E", new CheckBox("Usar E en Tirar 1", true));
             SubMenu["Harass"].Add("Mana", new Slider("Min. Energy Percent:", 20, 0, 100));
-            SubMenu["Harass"].AddGroupLabel("Harass 2");
-            SubMenu["Harass"].Add("Q2", new CheckBox("Use Q on Harass 2", true));
-            SubMenu["Harass"].Add("W2", new CheckBox("Use W on Harass 2", true));
-            SubMenu["Harass"].Add("E2", new CheckBox("Use E on Harass 2", true));
-            SubMenu["Harass"].Add("Mana2", new Slider("Min. Energy Percent:", 20, 0, 100));
+            SubMenu["Harass"].AddGroupLabel("Tirar 2");
+            SubMenu["Harass"].Add("Q2", new CheckBox("Usar Q en Tirar 2", true));
+            SubMenu["Harass"].Add("W2", new CheckBox("Usar W en Tirar 2", true));
+            SubMenu["Harass"].Add("E2", new CheckBox("Usar E en Tirar 2", true));
+            SubMenu["Harass"].Add("Mana2", new Slider("Min. Porcentaje de Energia:", 20, 0, 100));
 
-            SubMenu["LaneClear"] = menu.AddSubMenu("LaneClear", "LaneClear");
-            SubMenu["LaneClear"].Add("E", new Slider("Use E if Hit >= ", 3, 0, 10));
+            SubMenu["LaneClear"] = menu.AddSubMenu("LimpiarLinea", "LimpiarLinea");
+            SubMenu["LaneClear"].Add("E", new Slider("Usar E if Hit >= ", 3, 0, 10));
             SubMenu["LaneClear"].AddGroupLabel("Unkillable minions");
-            SubMenu["LaneClear"].Add("Q2", new CheckBox("Use Q", true));
-            SubMenu["LaneClear"].Add("Mana", new Slider("Min. Energy Percent:", 50, 0, 100));
+            SubMenu["LaneClear"].Add("Q2", new CheckBox("Usar Q", true));
+            SubMenu["LaneClear"].Add("Mana", new Slider("Min. Porcentaje de Energia:", 50, 0, 100));
 
             SubMenu["LastHit"] = menu.AddSubMenu("LastHit", "LastHit");
             SubMenu["LastHit"].AddGroupLabel("Unkillable minions");
-            SubMenu["LastHit"].Add("Q", new CheckBox("Use Q", true));
-            SubMenu["LastHit"].Add("Mana", new Slider("Min. Energy Percent:", 50, 0, 100));
+            SubMenu["LastHit"].Add("Q", new CheckBox("Usar Q", true));
+            SubMenu["LastHit"].Add("Mana", new Slider("Min. Porcentaje de Energia:", 50, 0, 100));
 
-            SubMenu["JungleClear"] = menu.AddSubMenu("JungleClear", "JungleClear");
-            SubMenu["JungleClear"].Add("Q", new CheckBox("Use Q", true));
-            SubMenu["JungleClear"].Add("W", new CheckBox("Use W", true));
-            SubMenu["JungleClear"].Add("E", new CheckBox("Use E", true));
-            SubMenu["JungleClear"].Add("Mana", new Slider("Min. Energy Percent:", 20, 0, 100));
+            SubMenu["JungleClear"] = menu.AddSubMenu("LimpiarJungla", "LimpiarJungla");
+            SubMenu["JungleClear"].Add("Q", new CheckBox("Usar Q", true));
+            SubMenu["JungleClear"].Add("W", new CheckBox("Usar W", true));
+            SubMenu["JungleClear"].Add("E", new CheckBox("Usar E", true));
+            SubMenu["JungleClear"].Add("Mana", new Slider("Min. Porcentaje de Energia:", 20, 0, 100));
 
             SubMenu["KillSteal"] = menu.AddSubMenu("KillSteal", "KillSteal");
-            SubMenu["KillSteal"].Add("Q", new CheckBox("Use Q", true));
-            SubMenu["KillSteal"].Add("W", new CheckBox("Use W", true));
-            SubMenu["KillSteal"].Add("E", new CheckBox("Use E", true));
-            SubMenu["KillSteal"].Add("Ignite", new CheckBox("Use Ignite", true));
+            SubMenu["KillSteal"].Add("Q", new CheckBox("Usar Q", true));
+            SubMenu["KillSteal"].Add("W", new CheckBox("Usar W", true));
+            SubMenu["KillSteal"].Add("E", new CheckBox("Usar E", true));
+            SubMenu["KillSteal"].Add("Ignite", new CheckBox("Usar Ignite", true));
 
-            SubMenu["Flee"] = menu.AddSubMenu("Flee", "Flee");
-            SubMenu["Flee"].Add("W", new CheckBox("Use W", true));
-            SubMenu["Flee"].Add("E", new CheckBox("Use E", true));
+            SubMenu["Flee"] = menu.AddSubMenu("Huir", "Huir");
+            SubMenu["Flee"].Add("W", new CheckBox("Usar W", true));
+            SubMenu["Flee"].Add("E", new CheckBox("Usar E", true));
 
-            SubMenu["Draw"] = menu.AddSubMenu("Drawing", "Drawing");
-            SubMenu["Draw"].Add("W", new CheckBox("Draw W Shadow", true));
-            SubMenu["Draw"].Add("R", new CheckBox("Draw R Shadow", true));
-            SubMenu["Draw"].Add("IsDead", new CheckBox("Draw text if target will die", true));
-            SubMenu["Draw"].Add("Passive", new CheckBox("Draw text when passive is ready", true));
+            SubMenu["Draw"] = menu.AddSubMenu("Circulos", "Circulos");
+            SubMenu["Draw"].Add("W", new CheckBox("Draw W Sombra", true));
+            SubMenu["Draw"].Add("R", new CheckBox("Draw R Sombra", true));
+            SubMenu["Draw"].Add("IsDead", new CheckBox("Draw texto si el objetivo va a morir", true));
+            SubMenu["Draw"].Add("Passive", new CheckBox("Draw texto cuando pasiva está lista", true));
 
-            SubMenu["Misc"] = menu.AddSubMenu("Misc", "Misc");
-            SubMenu["Misc"].Add("Overkill", new Slider("Overkill % for damage prediction", 10, 0, 100));
-            SubMenu["Misc"].Add("AutoE", new CheckBox("Use Auto E", false));
-            SubMenu["Misc"].Add("SwapDead", new CheckBox("Use Auto W2/R2 if target will die", false));
+            SubMenu["Misc"] = menu.AddSubMenu("Otros", "Otros");
+            SubMenu["Misc"].Add("Overkill", new Slider("Overkill % para la predicción de daños", 10, 0, 100));
+            SubMenu["Misc"].Add("AutoE", new CheckBox("Usar Auto E", false));
+            SubMenu["Misc"].Add("SwapDead", new CheckBox("Usar Auto W2/R2 si el objetivo va a morir", false));
             SubMenu["Misc"].AddSeparator();
-            SubMenu["Misc"].Add("EvadeR1", new CheckBox("Use R1 to Evade", true));
+            SubMenu["Misc"].Add("Evadir", new CheckBox("Usar R1 para evadir", true));
             foreach (var enemy in EntityManager.Heroes.Enemies)
             {
                 SubMenu["Misc"].AddGroupLabel(enemy.ChampionName);
